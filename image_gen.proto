@@ -1,0 +1,27 @@
+syntax = "proto3";
+package imagegen;
+
+// —––– your two remaining RPCs —––––
+service ImageGen {
+  rpc Ping      (PingRequest)    returns (PingResponse);
+  rpc Generate  (GenerateRequest) returns (GenerateResponse);
+}
+
+// Ping
+message PingRequest  {}
+message PingResponse { string message = 1; }
+
+// Image gen
+message GenerateRequest {
+  string prompt              = 1;
+  int32  height              = 2;
+  int32  width               = 3;
+  int32  num_inference_steps = 4;
+  float  guidance_scale      = 5;
+}
+message GenerateResponse {
+  bytes  image_png       = 1;
+  double inference_time  = 2;
+}
+
+
